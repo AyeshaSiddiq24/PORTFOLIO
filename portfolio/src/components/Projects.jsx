@@ -33,7 +33,7 @@ export default function Projects() {
         "Streamlit",
         "python-pptx",
       ],
-      source: "",
+      source: "https://github.com/AyeshaSiddiq24/CAPSTONE_PROJECT",
     },
     {
       title: "Real-Time Fraud Detection System",
@@ -47,14 +47,14 @@ export default function Projects() {
         "MLflow",
         "Docker",
       ],
-      source: "",
+      source: "https://github.com/AyeshaSiddiq24/Real-Time-Fraud-Detection-System",
     },
     {
       title: "Med Ease: ML-Driven Symptom & Drug Recommendation System",
       description:
         "ML-powered healthcare system for symptom analysis, diagnostic predictions, and drug recommendations. Includes a responsive UI and resulted in a published research paper.",
       tech: ["Machine Learning", "Python", "Healthcare AI"],
-      source: "",
+      source: "https://github.com/AyeshaSiddiq24/MED-EASE-ML-DRIVEN-SYMPTOM-ANALYSIS-WITH-AN-EXPERT-DOCTOR-AND-DRUG-RECOMMENDATION-SYSTEM",
     },
     {
       title: "Statistical Analysis of GitHub Repository Popularity",
@@ -68,7 +68,7 @@ export default function Projects() {
         "ggplot2",
         "Kaggle Dataset",
       ],
-      source: "",
+      source: "https://github.com/AyeshaSiddiq24/Statistical-Analysis-of-Factors-Influencing-GitHub-Repository-Popularity",
     },
     {
       title: "Library Management System",
