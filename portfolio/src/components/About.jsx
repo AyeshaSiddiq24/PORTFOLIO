@@ -1,6 +1,10 @@
-
+import useScreen from "../hooks/useScreen";
 
 export default function About() {
+  const { isMobile, isTablet } = useScreen();
+
+  const styles = getStyles(isMobile, isTablet);
+
   return (
     <section id="about" style={styles.section}>
       <div style={styles.container}>
@@ -36,7 +40,7 @@ export default function About() {
 
         {/* RIGHT CONTENT */}
         <div style={styles.right}>
-          {/* IMAGE WITH HOVER */}
+          {/* IMAGE */}
           <div
             style={styles.imageWrapper}
             onMouseEnter={(e) => {
@@ -51,11 +55,10 @@ export default function About() {
             }}
           >
             <img
-  src="/profile.jpg"
-  alt="Ayesha Siddiq"
-  style={styles.image}
-/>
-
+              src="/profile.jpg"
+              alt="Ayesha Siddiq"
+              style={styles.image}
+            />
           </div>
 
           {/* SKILL BOXES */}
@@ -80,80 +83,86 @@ export default function About() {
 
 /* ================= STYLES ================= */
 
-const styles = {
-  section: {
-    padding: "120px 80px",
-  },
+function getStyles(isMobile, isTablet) {
+  return {
+    section: {
+      padding: isMobile
+        ? "80px 20px"
+        : isTablet
+        ? "120px 48px"
+        : "140px 120px",
+    },
 
-  container: {
-    maxWidth: "1200px",
-    margin: "0 auto",
-    display: "grid",
-    gridTemplateColumns: "1.1fr 0.9fr",
-    gap: "80px",
-    alignItems: "center",
-  },
+    container: {
+      maxWidth: "1200px",
+      margin: "0 auto",
+      display: "grid",
+      gridTemplateColumns: isMobile ? "1fr" : "1.1fr 0.9fr",
+      gap: isMobile ? "48px" : "80px",
+      alignItems: "center",
+    },
 
-  text: {
-    color: "#cbd5f5",
-  },
+    text: {
+      color: "#cbd5f5",
+    },
 
-  heading: {
-    fontSize: "36px",
-    fontWeight: 700,
-    marginBottom: "12px",
-    marginTop: "-40px", // 👈 moves heading UP slightly
-  },
+    heading: {
+      fontSize: isMobile ? "28px" : "36px",
+      fontWeight: 700,
+      marginBottom: "12px",
+      marginTop: "-20px", // subtle lift only
+    },
 
-  subtitle: {
-    color: "#94a3b8",
-    marginBottom: "28px",
-    maxWidth: "520px",
-  },
+    subtitle: {
+      color: "#94a3b8",
+      marginBottom: "28px",
+      maxWidth: "520px",
+    },
 
-  paragraph: {
-    color: "#94a3b8",
-    lineHeight: 1.7,
-    marginBottom: "18px",
-    maxWidth: "520px",
-  },
+    paragraph: {
+      color: "#94a3b8",
+      lineHeight: 1.7,
+      marginBottom: "18px",
+      maxWidth: "520px",
+    },
 
-  right: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    gap: "28px",
-  },
+    right: {
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      gap: "28px",
+    },
 
-  imageWrapper: {
-    transition: "all 0.3s ease",
-  },
+    imageWrapper: {
+      transition: "all 0.3s ease",
+    },
 
-  image: {
-    width: "260px",
-    borderRadius: "8px",
-    background: "#fff",
-    boxShadow: "0 20px 40px rgba(0,0,0,0.35)",
-    transition: "transform 0.3s ease, box-shadow 0.3s ease",
-  },
+    image: {
+      width: isMobile ? "220px" : "260px",
+      borderRadius: "8px",
+      background: "#fff",
+      boxShadow: "0 20px 40px rgba(0,0,0,0.35)",
+      transition: "transform 0.3s ease, box-shadow 0.3s ease",
+    },
 
-  skillBox: {
-    width: "100%",
-    background: "rgba(255,255,255,0.04)",
-    borderRadius: "14px",
-    padding: "18px 22px",
-    border: "1px solid rgba(255,255,255,0.08)",
-  },
+    skillBox: {
+      width: "100%",
+      background: "rgba(255,255,255,0.04)",
+      borderRadius: "14px",
+      padding: "18px 22px",
+      border: "1px solid rgba(255,255,255,0.08)",
+    },
 
-  skillTitle: {
-    fontSize: "16px",
-    fontWeight: 600,
-    marginBottom: "6px",
-    color: "#e5e7eb",
-  },
+    skillTitle: {
+      fontSize: "16px",
+      fontWeight: 600,
+      marginBottom: "6px",
+      color: "#e5e7eb",
+    },
 
-  skillText: {
-    fontSize: "14px",
-    color: "#94a3b8",
-  },
-};
+    skillText: {
+      fontSize: "14px",
+      color: "#94a3b8",
+    },
+  };
+}

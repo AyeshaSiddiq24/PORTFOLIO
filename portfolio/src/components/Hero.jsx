@@ -1,7 +1,16 @@
 import { useEffect, useState } from "react";
+import useScreen from "../hooks/useScreen";
 
 export default function Hero() {
-  const roles = ["AI Engineer", "Data Engineer", "Data Scientist","Software Engineer"];
+  const { isMobile, isTablet } = useScreen();
+
+  const roles = [
+    "AI Engineer",
+    "Data Engineer",
+    "Data Scientist",
+    "Software Engineer",
+  ];
+
   const [text, setText] = useState("");
   const [roleIndex, setRoleIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
@@ -30,6 +39,8 @@ export default function Hero() {
 
     return () => clearTimeout(timeout);
   }, [charIndex, deleting, roleIndex]);
+
+  const styles = getStyles(isMobile, isTablet);
 
   return (
     <section style={styles.hero}>
@@ -78,8 +89,7 @@ export default function Hero() {
       <h1 style={styles.name}>Ayesha Siddiq</h1>
 
       <h2 style={styles.role}>
-        I am a{" "}
-        <span style={styles.typing}>{text}</span>
+        I am a <span style={styles.typing}>{text}</span>
         <span style={styles.cursor}>|</span>
       </h2>
 
@@ -130,83 +140,90 @@ const Mail = () => (
   </svg>
 );
 
-/* ================= STYLES ================= */
+/* ================= RESPONSIVE STYLES ================= */
 
-const styles = {
-  hero: {
-    minHeight: "100vh",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    textAlign: "center",
-    padding: "0 20px",
-  },
+function getStyles(isMobile, isTablet) {
+  return {
+    hero: {
+      minHeight: "100vh",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      textAlign: "center",
+      padding: isMobile
+        ? "0 20px"
+        : isTablet
+        ? "0 48px"
+        : "0 120px",
+    },
 
-  available: {
-    display: "flex",
-    alignItems: "center",
-    gap: "8px",
-    marginBottom: "22px",
-  },
+    available: {
+      display: "flex",
+      alignItems: "center",
+      gap: "8px",
+      marginBottom: "22px",
+    },
 
-  greenDot: {
-    width: "10px",
-    height: "10px",
-    borderRadius: "50%",
-    backgroundColor: "#22c55e",
-    animation: "greenPulse 1.4s ease-in-out infinite",
-  },
+    greenDot: {
+      width: "10px",
+      height: "10px",
+      borderRadius: "50%",
+      backgroundColor: "#22c55e",
+      animation: "greenPulse 1.4s ease-in-out infinite",
+    },
 
-  availableText: {
-    color: "#ffffff",
-    fontSize: "14px",
-  },
+    availableText: {
+      color: "#ffffff",
+      fontSize: "14px",
+    },
 
-  name: {
-    fontSize: "52px",
-    fontWeight: 700,
-    marginBottom: "10px",
-  },
+    name: {
+      fontSize: isMobile ? "36px" : isTablet ? "44px" : "52px",
+      fontWeight: 700,
+      marginBottom: "10px",
+    },
 
-  role: {
-    fontSize: "22px",
-    color: "#cbd5f5",
-    marginBottom: "18px",
-  },
+    role: {
+      fontSize: isMobile ? "18px" : "22px",
+      color: "#cbd5f5",
+      marginBottom: "18px",
+    },
 
-  typing: {
-    color: "#3b82f6",
-    fontWeight: 600,
-  },
+    typing: {
+      color: "#3b82f6",
+      fontWeight: 600,
+    },
 
-  cursor: {
-    marginLeft: "4px",
-    animation: "blink 1s infinite",
-  },
+    cursor: {
+      marginLeft: "4px",
+      animation: "blink 1s infinite",
+    },
 
-  description: {
-    maxWidth: "720px",
-    color: "#94a3b8",
-    lineHeight: 1.6,
-    marginBottom: "36px",
-  },
+    description: {
+      maxWidth: "720px",
+      color: "#94a3b8",
+      lineHeight: 1.6,
+      marginBottom: "36px",
+      fontSize: isMobile ? "14px" : "15px",
+    },
 
-  icons: {
-    display: "flex",
-    gap: "28px",
-    marginBottom: "42px",
-    color: "#94a3b8",
-  },
+    icons: {
+      display: "flex",
+      gap: "28px",
+      marginBottom: "42px",
+      color: "#94a3b8",
+    },
 
-  icon: {
-    color: "#94a3b8",
-    transition: "color 0.25s ease",
-  },
+    icon: {
+      color: "#94a3b8",
+      transition: "color 0.25s ease",
+    },
 
-  arrow: {
-    fontSize: "26px",
-    color: "#94a3b8",
-    animation: "bounce 1.6s infinite",
-  },
-};
+    arrow: {
+      fontSize: "26px",
+      color: "#94a3b8",
+      animation: "bounce 1.6s infinite",
+    },
+  };
+}

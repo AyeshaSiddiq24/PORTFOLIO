@@ -1,4 +1,9 @@
+import useScreen from "../hooks/useScreen";
+
 export default function Projects() {
+  const { isMobile, isTablet } = useScreen();
+  const styles = getStyles(isMobile, isTablet);
+
   const projects = [
     {
       title: "AI-Powered Resume Screening & Job Matching System",
@@ -16,7 +21,6 @@ export default function Projects() {
       source:
         "https://github.com/AyeshaSiddiq24/AI-Powered-Resume-Screening-Job-Matching-System",
     },
-
     {
       title: "Multi-Agent AI Research & Content Generation System",
       description:
@@ -31,7 +35,6 @@ export default function Projects() {
       ],
       source: "",
     },
-
     {
       title: "Real-Time Fraud Detection System",
       description:
@@ -46,7 +49,6 @@ export default function Projects() {
       ],
       source: "",
     },
-
     {
       title: "Med Ease: ML-Driven Symptom & Drug Recommendation System",
       description:
@@ -54,7 +56,6 @@ export default function Projects() {
       tech: ["Machine Learning", "Python", "Healthcare AI"],
       source: "",
     },
-
     {
       title: "Statistical Analysis of GitHub Repository Popularity",
       description:
@@ -69,7 +70,6 @@ export default function Projects() {
       ],
       source: "",
     },
-
     {
       title: "Library Management System",
       description:
@@ -77,7 +77,6 @@ export default function Projects() {
       tech: ["Oracle DB", "SQL", "PL/SQL"],
       source: "",
     },
-
     {
       title: "Custom Store – Role-Based E-Commerce Platform",
       description:
@@ -92,7 +91,6 @@ export default function Projects() {
       ],
       source: "",
     },
-
     {
       title: "Hospital Management System",
       description:
@@ -170,115 +168,115 @@ export default function Projects() {
 
 function GitHubIcon() {
   return (
-    <svg
-      width="18"
-      height="18"
-      viewBox="0 0 24 24"
-      fill="currentColor"
-    >
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
       <path d="M12 .5C5.7.5.5 5.8.5 12.2c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2.1c-3.2.7-3.9-1.6-3.9-1.6-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.7-1.6-2.5-.3-5.1-1.3-5.1-5.6 0-1.2.4-2.1 1.1-2.9-.1-.3-.5-1.4.1-2.9 0 0 .9-.3 3 1.1a10.3 10.3 0 015.5 0c2.1-1.4 3-1.1 3-1.1.6 1.5.2 2.6.1 2.9.7.8 1.1 1.7 1.1 2.9 0 4.3-2.6 5.3-5.1 5.6.4.4.8 1 .8 2v3c0 .3.2.7.8.6a11.7 11.7 0 007.9-10.9C23.5 5.8 18.3.5 12 .5z" />
     </svg>
   );
 }
 
-/* ===================== STYLES ===================== */
+/* ================= RESPONSIVE STYLES ================= */
 
-const styles = {
-  section: {
-    padding: "140px 120px",
-    background: "radial-gradient(circle at top, #0f172a, #020617)",
-    color: "#e5e7eb",
-  },
+function getStyles(isMobile, isTablet) {
+  return {
+    section: {
+      padding: isMobile
+        ? "80px 20px"
+        : isTablet
+        ? "120px 48px"
+        : "140px 120px",
+      background: "radial-gradient(circle at top, #0f172a, #020617)",
+      color: "#e5e7eb",
+    },
 
-  header: {
-    marginBottom: "70px",
-  },
+    header: {
+      marginBottom: "70px",
+    },
 
-  title: {
-    fontSize: "42px",
-    fontWeight: 700,
-    marginBottom: "12px",
-  },
+    title: {
+      fontSize: isMobile ? "32px" : "42px",
+      fontWeight: 700,
+      marginBottom: "12px",
+    },
 
-  dot: {
-    color: "#4f8cff",
-  },
+    dot: {
+      color: "#4f8cff",
+    },
 
-  subtitle: {
-    fontSize: "18px",
-    color: "#94a3b8",
-    maxWidth: "650px",
-    lineHeight: 1.6,
-  },
+    subtitle: {
+      fontSize: isMobile ? "15px" : "18px",
+      color: "#94a3b8",
+      maxWidth: "650px",
+      lineHeight: 1.6,
+    },
 
-  underline: {
-    width: "60px",
-    height: "3px",
-    background: "#4f8cff",
-    marginTop: "18px",
-    opacity: 0.6,
-  },
+    underline: {
+      width: "60px",
+      height: "3px",
+      background: "#4f8cff",
+      marginTop: "18px",
+      opacity: 0.6,
+    },
 
-  grid: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-    gap: "32px",
-  },
+    grid: {
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+      gap: "32px",
+    },
 
-  card: {
-    background:
-      "linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))",
-    border: "1px solid rgba(255,255,255,0.08)",
-    borderRadius: "16px",
-    padding: "28px",
-    transition: "all 0.35s ease",
-  },
+    card: {
+      background:
+        "linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02))",
+      border: "1px solid rgba(255,255,255,0.08)",
+      borderRadius: "16px",
+      padding: "28px",
+      transition: "all 0.35s ease",
+    },
 
-  icon: {
-    fontSize: "28px",
-    color: "#4f8cff",
-    opacity: 0.7,
-    marginBottom: "18px",
-  },
+    icon: {
+      fontSize: "28px",
+      color: "#4f8cff",
+      opacity: 0.7,
+      marginBottom: "18px",
+    },
 
-  cardTitle: {
-    fontSize: "18px",
-    fontWeight: 600,
-    marginBottom: "10px",
-  },
+    cardTitle: {
+      fontSize: "18px",
+      fontWeight: 600,
+      marginBottom: "10px",
+    },
 
-  cardDescription: {
-    fontSize: "15px",
-    color: "#cbd5f5",
-    lineHeight: 1.6,
-    marginBottom: "20px",
-  },
+    cardDescription: {
+      fontSize: "15px",
+      color: "#cbd5f5",
+      lineHeight: 1.6,
+      marginBottom: "20px",
+    },
 
-  tags: {
-    display: "flex",
-    flexWrap: "wrap",
-    gap: "10px",
-    marginBottom: "22px",
-  },
+    tags: {
+      display: "flex",
+      flexWrap: "wrap",
+      gap: "10px",
+      marginBottom: "22px",
+    },
 
-  tag: {
-    fontSize: "13px",
-    color: "#4f8cff",
-    border: "1px solid rgba(79,140,255,0.35)",
-    padding: "6px 10px",
-    borderRadius: "8px",
-  },
+    tag: {
+      fontSize: "13px",
+      color: "#4f8cff",
+      border: "1px solid rgba(79,140,255,0.35)",
+      padding: "6px 10px",
+      borderRadius: "8px",
+    },
 
-  sourceButton: {
-    display: "inline-flex",
-    alignItems: "center",
-    gap: "10px",
-    padding: "10px 14px",
-    borderRadius: "10px",
-    border: "1px solid rgba(79,140,255,0.35)",
-    color: "#e5e7eb",
-    textDecoration: "none",
-    fontSize: "14px",
-    transition: "all 0.25s ease",
-  },
-};
+    sourceButton: {
+      display: "inline-flex",
+      alignItems: "center",
+      gap: "10px",
+      padding: "10px 14px",
+      borderRadius: "10px",
+      border: "1px solid rgba(79,140,255,0.35)",
+      color: "#e5e7eb",
+      textDecoration: "none",
+      fontSize: "14px",
+    },
+  };
+}

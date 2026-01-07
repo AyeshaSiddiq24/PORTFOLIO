@@ -1,97 +1,51 @@
+import useScreen from "../hooks/useScreen";
+
 export default function Contact() {
+  const { isMobile, isTablet } = useScreen();
+
+  const styles = getStyles(isMobile, isTablet);
+
   return (
-    <section
-      id="contact"
-      style={{
-        padding: "120px 64px",
-        maxWidth: "1400px",
-        margin: "0 auto",
-      }}
-    >
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "64px",
-          alignItems: "flex-start",
-        }}
-      >
+    <section id="contact" style={styles.section}>
+      <div style={styles.grid}>
         {/* LEFT CONTENT */}
         <div>
-          <h2 style={{ fontSize: "36px", fontWeight: 700 }}>
+          <h2 style={styles.heading}>
             Get in Touch <span style={{ color: "#3b82f6" }}>.</span>
           </h2>
 
-          <p
-            style={{
-              color: "#94a3b8",
-              marginTop: "12px",
-              maxWidth: "420px",
-              lineHeight: 1.6,
-            }}
-          >
-             I'm open to full-time opportunities, internships, and collaborations in AI and data engineering.
-
-
+          <p style={styles.subtitle}>
+            I'm open to full-time opportunities, internships, and collaborations
+            in AI and data engineering.
           </p>
 
-          <div
-            style={{
-              width: "60px",
-              height: "3px",
-              background: "#1d4ed8",
-              marginTop: "24px",
-            }}
-          />
+          <div style={styles.underline} />
 
           {/* CONTACT CARDS */}
-          <div
-            style={{
-              marginTop: "48px",
-              display: "flex",
-              flexDirection: "column",
-              gap: "16px",
-            }}
-          >
-            {/* EMAIL */}
+          <div style={styles.cardList}>
             <ContactCard
               icon={<MailIcon />}
               label="Email me at"
               value="siddiq.a@northeastern.edu"
             />
 
-            {/* LINKEDIN */}
             <ContactCard
               icon={<LinkedInIcon />}
               label="Connect on"
-              value="https://www.linkedin.com/in/ayesha-siddiq-aa2207201/"
+              value="linkedin.com/in/ayesha-siddiq-aa2207201"
             />
 
-            {/* GITHUB */}
             <ContactCard
               icon={<GitHubIcon />}
               label="Check my code on"
-              value="https://github.com/AyeshaSiddiq24"
+              value="github.com/AyeshaSiddiq24"
             />
           </div>
         </div>
 
         {/* RIGHT FORM */}
-        <form
-          style={{
-            background: "rgba(255,255,255,0.04)",
-            border: "1px solid #1f2937",
-            borderRadius: "18px",
-            padding: "32px",
-          }}
-        >
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "16px",
-            }}
-          >
+        <form style={styles.form}>
+          <div style={styles.formGrid}>
             <div>
               <label style={labelStyle}>Name</label>
               <input style={inputStyle} placeholder="Your name" />
@@ -111,23 +65,7 @@ export default function Contact() {
             />
           </div>
 
-          <button
-            type="submit"
-            style={{
-              marginTop: "24px",
-              background: "#3b82f6",
-              color: "#fff",
-              border: "none",
-              padding: "14px 22px",
-              borderRadius: "12px",
-              fontSize: "15px",
-              fontWeight: 500,
-              cursor: "pointer",
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "8px",
-            }}
-          >
+          <button type="submit" style={styles.button}>
             Send Message ✈️
           </button>
         </form>
@@ -136,22 +74,12 @@ export default function Contact() {
   );
 }
 
-/* ================= COMPONENTS ================= */
+/* ================= CONTACT CARD ================= */
 
 function ContactCard({ icon, label, value }) {
   return (
     <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: "16px",
-        padding: "18px 20px",
-        background: "rgba(255,255,255,0.04)",
-        border: "1px solid #1f2937",
-        borderRadius: "14px",
-        transition: "all 0.25s ease",
-        cursor: "pointer",
-      }}
+      style={stylesCard.card}
       onMouseEnter={(e) => {
         e.currentTarget.style.borderColor = "#3b82f6";
         e.currentTarget.style.transform = "translateY(-2px)";
@@ -163,8 +91,8 @@ function ContactCard({ icon, label, value }) {
     >
       <div style={{ width: "22px", color: "#3b82f6" }}>{icon}</div>
       <div>
-        <p style={{ fontSize: "13px", color: "#94a3b8" }}>{label}</p>
-        <p style={{ fontWeight: 500 }}>{value}</p>
+        <p style={stylesCard.label}>{label}</p>
+        <p style={stylesCard.value}>{value}</p>
       </div>
     </div>
   );
@@ -197,7 +125,102 @@ function GitHubIcon() {
   );
 }
 
-/* ================= STYLES ================= */
+/* ================= RESPONSIVE STYLES ================= */
+
+function getStyles(isMobile, isTablet) {
+  return {
+    section: {
+      padding: isMobile
+        ? "80px 20px"
+        : isTablet
+        ? "120px 48px"
+        : "140px 120px",
+      maxWidth: "1400px",
+      margin: "0 auto",
+    },
+
+    grid: {
+      display: "grid",
+      gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+      gap: isMobile ? "48px" : "64px",
+      alignItems: "flex-start",
+    },
+
+    heading: {
+      fontSize: isMobile ? "28px" : "36px",
+      fontWeight: 700,
+    },
+
+    subtitle: {
+      color: "#94a3b8",
+      marginTop: "12px",
+      maxWidth: "420px",
+      lineHeight: 1.6,
+    },
+
+    underline: {
+      width: "60px",
+      height: "3px",
+      background: "#1d4ed8",
+      marginTop: "24px",
+    },
+
+    cardList: {
+      marginTop: "48px",
+      display: "flex",
+      flexDirection: "column",
+      gap: "16px",
+    },
+
+    form: {
+      background: "rgba(255,255,255,0.04)",
+      border: "1px solid #1f2937",
+      borderRadius: "18px",
+      padding: "32px",
+    },
+
+    formGrid: {
+      display: "grid",
+      gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+      gap: "16px",
+    },
+
+    button: {
+      marginTop: "24px",
+      background: "#3b82f6",
+      color: "#fff",
+      border: "none",
+      padding: "14px 22px",
+      borderRadius: "12px",
+      fontSize: "15px",
+      fontWeight: 500,
+      cursor: "pointer",
+    },
+  };
+}
+
+/* ================= SHARED ================= */
+
+const stylesCard = {
+  card: {
+    display: "flex",
+    alignItems: "center",
+    gap: "16px",
+    padding: "18px 20px",
+    background: "rgba(255,255,255,0.04)",
+    border: "1px solid #1f2937",
+    borderRadius: "14px",
+    transition: "all 0.25s ease",
+    cursor: "pointer",
+  },
+  label: {
+    fontSize: "13px",
+    color: "#94a3b8",
+  },
+  value: {
+    fontWeight: 500,
+  },
+};
 
 const labelStyle = {
   display: "block",
